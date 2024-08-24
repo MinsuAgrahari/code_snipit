@@ -1,1 +1,46 @@
+// 189. Rotate Array (LEETCODE)
+// Given an integer array nums, rotate the array to the right by k steps, where k is non-negative.
 
+//creating the class 
+class reverse{
+    public void reverse_arr(int nums[], int s_idx, int e_idx){
+        // creating a reverse function 
+        while(s_idx <= e_idx){
+            int temp = nums[s_idx];
+            nums[s_idx] = nums[e_idx];
+            nums[e_idx] = temp;
+
+            s_idx++;
+            e_idx--;
+        }
+    }
+
+    public void print(int nums[]){
+        for(int i=0; i<nums.length; i++){
+            System.out.print(nums[i] + " ");
+        }
+        System.out.println();
+    }
+}
+
+class Solution {
+    public void rotate(int[] nums, int k) {
+        
+        k=k%nums.length;
+        
+        // making the object for reverse CLASS
+        reverse ob = new reverse();
+
+        //reversing the 1st part - from (0 to k-1)
+        ob.reverse_arr(nums, 0, k-1);
+        ob.print(nums);
+
+        // reversing the 2nd part - from (k to size)
+        ob.reverse_arr(nums, k, nums.length-1);
+        ob.print(nums);
+
+        // reversing the eniter array
+        ob.reverse_arr(nums, 0, nums.length-1);
+        ob.print(nums);
+    }
+}
