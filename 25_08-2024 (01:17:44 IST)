@@ -1,1 +1,37 @@
+// 189. Rotate Array
+// Given an integer array nums, rotate the array to the right by k steps, where k is non-negative.
 
+//creating the class 
+class reverse{
+    public void reverse_arr(int nums[], int s_idx, int e_idx){
+        // creating a reverse function 
+        while(s_idx <= e_idx){
+            int temp = nums[s_idx];
+            nums[s_idx] = nums[e_idx];
+            nums[e_idx] = temp;
+
+            s_idx++;
+            e_idx--;
+        }
+    }
+}
+
+class Solution {
+    public void rotate(int[] nums, int k) {
+        
+        int size = nums.length;
+        k=k%nums.length;
+        
+        // making the object for reverse CLASS
+        reverse ob = new reverse();
+
+        //reversing the 1st part - from (0 to k-1)
+        ob.reverse_arr(nums, 0, size-k-1);
+
+        // reversing the 2nd part - from (k to size)
+        ob.reverse_arr(nums,size-k, size-1);
+
+        // reversing the eniter array
+        ob.reverse_arr(nums, 0, size-1);
+    }
+}
